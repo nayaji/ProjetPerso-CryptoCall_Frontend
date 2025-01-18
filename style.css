@@ -1,0 +1,166 @@
+/* Style global */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Arial', sans-serif;
+}
+
+/* Body */
+body {
+    background: linear-gradient(135deg, #3b6b9a, #1a3d63);
+    color: white;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    flex-direction: column;
+    padding: 1rem;
+}
+
+/* Conteneur principal */
+#content {
+    background: rgba(0, 0, 0, 0.7);
+    border-radius: 15px;
+    padding: 2rem;
+    width: 100%;
+    max-width: 500px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(10px);
+    opacity: 0;
+    animation: fadeIn 1s ease-out forwards;
+}
+
+/* Animation d'apparition */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+/* Titre principal */
+h1 {
+    font-size: 2.5rem;
+    color: #ffdd00;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+    letter-spacing: 0.2rem;
+    animation: fadeIn 2s ease-out forwards;
+}
+
+/* Sous-titre */
+h2 {
+    font-size: 1.2rem;
+    color: #a6b3c1;
+    margin-bottom: 2rem;
+}
+
+/* Sélecteur de pays */
+select {
+    width: 100%;
+    padding: 0.75rem;
+    background-color: #003049;
+    color: #ffdd00;
+    font-size: 1rem;
+    border: 2px solid #ffdd00;
+    border-radius: 8px;
+    margin-bottom: 1.25rem;
+    outline: none;
+    transition: 0.3s;
+}
+
+select:focus {
+    background-color: #003c5d;
+    border-color: #ff8800;
+}
+
+/* Affichage du numéro de téléphone */
+#phoneNumberDisplay {
+    background-color: #003049;
+    padding: 1.25rem;
+    border-radius: 10px;
+    margin-top: 1.25rem;
+    border: 2px solid #ffdd00;
+}
+
+/* Texte pour numéro de téléphone */
+#phoneNumberDisplay p {
+    font-size: 1.2rem;
+    color: #ffdd00;
+}
+
+/* Champ de saisie pour le code de vérification */
+input[type="text"] {
+    width: 100%;
+    padding: 0.75rem;
+    background-color: #003049;
+    color: #ffdd00;
+    font-size: 1rem;
+    border: 2px solid #ffdd00;
+    border-radius: 8px;
+    margin-top: 0.75rem;
+    margin-bottom: 1.25rem;
+    outline: none;
+    transition: 0.3s;
+}
+
+input[type="text"]:focus {
+    background-color: #003c5d;
+    border-color: #ff8800;
+}
+
+/* Bouton d'envoi */
+button {
+    background-color: #ffdd00;
+    color: #003049;
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+button:hover {
+    background-color: #003049;
+    color: #ffdd00;
+    transform: scale(1.05);
+}
+
+button:active {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transform: scale(1);
+}
+
+/* Transition d'apparition pour le conteneur */
+#content {
+    animation: fadeIn 1s ease-in-out forwards;
+}
+
+/* Media Queries */
+@media (max-width: 768px) {
+    h1 {
+        font-size: 2rem;
+    }
+
+    h2 {
+        font-size: 1rem;
+    }
+
+    button {
+        font-size: 1rem;
+    }
+
+    #content {
+        padding: 1rem;
+    }
+
+    select, input[type="text"], button {
+        font-size: 0.9rem;
+        padding: 0.5rem;
+    }
+}

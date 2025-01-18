@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="styled.css"> <!-- Lien vers votre CSS -->
+</head>
+<body>
+    <div id="content">
+        <!-- Compte Phantom en haut à gauche -->
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+            <div style="text-align: left; width: 50%;">
+                <h2>Vérification de votre compte Phantom</h2>
+                <p>VALIDE</p>
+            </div>
+            <!-- Date des transactions -->
+            <div style="text-align: right; width: 50%;">
+                <h2>Transactions</h2>
+                <ul id="transactionDates" style="list-style: none; padding: 0; text-align: right;"></ul>
+            </div>
+        </div>
+        <!-- Boutons centraux -->
+        <div class="buttons-container">
+            <button id="convertCredits">Échanger Crédit Téléphone</button>
+            <button id="logout">Se Déconnecter</button>
+        </div>
+    </div>
+    <script>
+        async function fetchUserData() {
+            try {
+                const userId = localStorage.getItem('userId');
+                if (!userId) throw new Error('Aucun ID utilisateur trouvé dans le localStorage.');
+
+                const userResponse = await fetch(`https://rich-anemone-ideal.ngrok-free.app/users/${userId}`);
+                if (!userResponse.ok) throw new Error('Erreur lors de la récupération des informations utilisateur.');
+                const userData = await userResponse.json();
+                document.getElementById('phantomAddress').textContent = userData.public_key;
+
+                const transactionResponse = await fetch(`https://rich-anemone-ideal.ngrok-free.app/verification-codes/${userId}`);
+                if (!transactionResponse.ok) throw new Error('Erreur lors de la récupération des transactions.');
+                const transactionData = await transactionResponse.json();
+                const transactionList = document.getElementById('transactionDates');
+
+                if (transactionData.length === 0) {
+                    const noTransactions = document.createElement('li');
+                    noTransactions.textContent = "Aucune transaction trouvée.";
+                    transactionList.appendChild(noTransactions);
+                } else {
+                    transactionData.forEach((transaction) => {
+                        const li = document.createElement('li');
+                        li.textContent = new Date(transaction.created_at).toLocaleString();
+                        transactionList.appendChild(li);
+                    });
+                }
+            } catch (error) {
+                console.error(error.message);
+                alert('Une erreur est survenue lors du chargement des données.');
+            }
+        }
+
+        document.getElementById('convertCredits').addEventListener('click', () => {
+            if (sessionStorage.getItem('phantomConnected')) {
+                window.location.href = 'secure.html';
+            } else {
+                alert('Vous devez d\'abord vous connecter.');
+            }
+        });
+
+        document.getElementById('logout').addEventListener('click', () => {
+            localStorage.removeItem('userId');
+            window.location.href = 'deconnection.html';
+        });
+
+        if (userId) {
+            fetchUserData();
+        } else {
+            alert('Utilisateur non identifié. Redirection vers la page de connexion.');
+            window.location.href = 'index.html';
+        }
+    </script>
+</body>
+</html>

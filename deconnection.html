@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Déconnexion</title>
+    <link rel="stylesheet" href="styled.css"> <!-- Lien vers votre CSS -->
+</head>
+<body>
+    <div id="content">
+        <h1>Au revoir, cher(e) visiteur!</h1>
+        <p>Vous avez quitté la session avec succès. Nous espérons vous revoir très bientôt !</p>
+        <div style="margin-top: 20px;">
+            <button id="backToHome">Retour à l'accueil</button>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('backToHome').addEventListener('click', () => {
+            // Redirection vers la page d'accueil
+            window.location.href = 'index.html';
+        });
+    </script>
+</body>
+</html>
